@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.paging3sampleproject.R
 import com.example.paging3sampleproject.databinding.ListItemBinding
 import com.example.paging3sampleproject.model.Data
+import com.example.paging3sampleproject.model.User
 
-class MainAdapter : PagingDataAdapter<Data, MainViewHolder>(diffUtil) {
+class MainAdapter : PagingDataAdapter<User, MainViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return DataBindingUtil.inflate<ListItemBinding>(
@@ -26,12 +27,12 @@ class MainAdapter : PagingDataAdapter<Data, MainViewHolder>(diffUtil) {
     }
 
     companion object {
-        private val diffUtil = object : DiffUtil.ItemCallback<Data>() {
-            override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
-                return oldItem.id == newItem.id
+        private val diffUtil = object : DiffUtil.ItemCallback<User>() {
+            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+                return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
                 return oldItem == newItem
             }
         }
@@ -39,7 +40,7 @@ class MainAdapter : PagingDataAdapter<Data, MainViewHolder>(diffUtil) {
 }
 
 class MainViewHolder(private val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(data: Data) {
+    fun bind(data: User) {
         binding.data = data
     }
 }

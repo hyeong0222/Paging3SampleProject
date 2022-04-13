@@ -4,13 +4,13 @@
     <data>
         <variable
             name="data"
-            type="com.example.paging3sampleproject.model.Data" />
+            type="com.example.paging3sampleproject.model.User" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="40dp"
+        android:layout_margin="10dp"
         app:cardCornerRadius="20dp">
 
         <LinearLayout
@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                android:text="@{data.first_name}"
+                android:text="@{data.login}"
                 android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large" />
 
             <TextView
@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                android:text="@{data.email]" />
+                android:text="@{data.avatar_url]" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

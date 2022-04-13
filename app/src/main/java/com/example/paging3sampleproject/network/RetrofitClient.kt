@@ -9,7 +9,7 @@ class RetrofitClient {
         private var INSTANCE: Retrofit? = null
 
         fun getInstance(): Retrofit = INSTANCE ?: synchronized(this) {
-            INSTANCE ?: Retrofit.Builder().baseUrl("https://reqres.in/")
+            INSTANCE ?: Retrofit.Builder().baseUrl("https://api.github.com/")
                 .addConverterFactory(GsonConverterFactory.create()).build().also { INSTANCE = it }
         }
     }

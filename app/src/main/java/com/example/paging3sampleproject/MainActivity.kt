@@ -2,12 +2,11 @@ package com.example.paging3sampleproject
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
 import com.example.paging3sampleproject.databinding.ActivityMainBinding
+import com.example.paging3sampleproject.ui.HeaderFooterAdapter
 import com.example.paging3sampleproject.ui.MainAdapter
 import com.example.paging3sampleproject.viewmodel.MainViewModel
 import kotlinx.coroutines.flow.collect
@@ -17,13 +16,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
-    private val adapter = MainAdapter()
+    private val adapter by lazy { MainAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
-        binding.adapter = adapter
 
         setupAdapter()
         setupViewModel()
@@ -31,9 +28,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAdapter() {
-        adapter.addLoadStateListener {
-            binding.progressbar.visibility = if (it.refresh == LoadState.Loading) View.VISIBLE else View.GONE
-        }
+        val concatAdapter = adapter.withLoadStateFooter(footer = HeaderFooterAdapter())
+        binding.recyclerview.adapter = concatAdapter
     }
 
     private fun setupViewModel() {
